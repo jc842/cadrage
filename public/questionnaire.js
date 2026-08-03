@@ -5,9 +5,10 @@
 (function () {
   'use strict';
 
-  /* Webhook de collecte par défaut (n8n / Zoho Flow).
-     Peut être surchargé par client dans clients.js. */
-  var ENDPOINT_DEFAUT = '';
+  /* Webhook de collecte (n8n). ADAPTER a votre instance avant mise en ligne :
+     l'URL doit aussi figurer dans la directive connect-src du fichier _headers.
+     Laisser vide desactive l'envoi reseau et bascule sur le telechargement local. */
+  var ENDPOINT_DEFAUT = 'https://n8n.les4h.fr/webhook/cadrage';
 
   /* ═══ 1. Résolution du client ═══════════════════════════════ */
 

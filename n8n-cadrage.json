@@ -1,0 +1,133 @@
+{
+  "name": "Cadrage — collecte des enquetes clients",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "cadrage",
+        "responseMode": "responseNode",
+        "options": {
+          "allowedOrigins": "https://esperance.les4h.fr,https://bellesrives.les4h.fr,https://greenlodge.les4h.fr,https://atmosphere.les4h.fr,https://cash.les4h.fr,https://pulsat.les4h.fr,https://123bonheur.les4h.fr,https://alubat971.les4h.fr,https://alubat972.les4h.fr,https://alubat973.les4h.fr,https://iris.les4h.fr,https://smt.les4h.fr,https://ossegua.les4h.fr,https://chloe.les4h.fr",
+          "rawBody": false
+        }
+      },
+      "id": "wh-cadrage",
+      "name": "Reception du formulaire",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [-620, 300],
+      "webhookId": "cadrage-les4h"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Controle de forme + anti-doublon (fenetre 10 minutes)\nconst p = $input.first().json.body || $input.first().json;\n\nif (!p || !p.client || !p.reponses || !p.reponses.contact_email) {\n  throw new Error('Charge utile invalide : client, reponses ou e-mail manquant.');\n}\n\nconst statique = $getWorkflowStaticData('global');\nstatique.recents = statique.recents || {};\nconst maintenant = Date.now();\n\n// purge des empreintes de plus de 10 minutes\nfor (const [k, t] of Object.entries(statique.recents)) {\n  if (maintenant - t > 600000) delete statique.recents[k];\n}\n\nconst empreinte = p.client.cle + '|' + String(p.reponses.contact_email).toLowerCase();\nconst doublon = Boolean(statique.recents[empreinte]);\nstatique.recents[empreinte] = maintenant;\n\nreturn [{ json: { ...p, doublon } }];"
+      },
+      "id": "code-controle",
+      "name": "Controle et anti-doublon",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [-400, 300]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": { "caseSensitive": true, "version": 2 },
+          "conditions": [
+            {
+              "id": "c1",
+              "leftValue": "={{ $json.doublon }}",
+              "rightValue": false,
+              "operator": { "type": "boolean", "operation": "false", "singleValue": true }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "if-doublon",
+      "name": "Nouvelle reponse ?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [-180, 300]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Mise en forme lisible du ticket\nconst p = $input.first().json;\nconst r = p.reponses || {};\nconst l = p.lecture || {};\n\nconst L = {\n  role_principal: { vitrine:'Exister et rassurer', leads:'Generer des demandes', vente:'Vendre en ligne', reservation:'Reservations / RDV', fideliser:'Informer et fideliser', recruter:'Recruter', indecis:'NON TRANCHE' },\n  frequence_maj: { rare:'Presque jamais', trimestre:'Trimestrielle', mois:'Mensuelle', semaine:'Hebdomadaire', quotidien:'Plusieurs fois/semaine', nsp:'NON TRANCHE' },\n  qui_edite: { les4h:'Personne (LES4H)', occasionnel:'Interne occasionnel', dedie:'Interne dedie', externe:'Prestataire externe', nsp:'NON TRANCHE' },\n  criticite: { rien:'Aucun impact', genant:'Genant', contacts:'Perte de demandes', ca:'Perte de CA immediate', arret:'Arret d activite' },\n  budget_mensuel: { '<25':'< 25 EUR/mois', '25-50':'25-50 EUR/mois', '50-100':'50-100 EUR/mois', '100-250':'100-250 EUR/mois', '250+':'> 250 EUR/mois', valeur:'A definir selon valeur' },\n  arbitrage: { sobriete:'Site plus rapide et moins cher', demandes:'Plus de demandes entrantes', vente:'Vendre en ligne', ia:'Visibilite Google + IA', image:'Refonte visuelle', statuquo:'STATU QUO' },\n  horizon: { immediat:'Immediat', trimestre:'Ce trimestre', annee:'Dans l annee', pasurgent:'Sans urgence', evenement:'Conditionne a un evenement' },\n  ia_volonte: { prioritaire:'Priorite', terme:'A terme', sceptique:'Sceptique', decouvre:'Decouvre le sujet' },\n  corpus: { volumineux:'Volumineux et a jour', disperse:'Existant mais disperse', peu:'Peu de choses', aucun:'Rien de formalise' }\n};\nconst v = (c, k) => (L[c] && L[c][r[k !== undefined ? k : c]]) || r[c] || 'non renseigne';\n\nconst drapeaux = (l.drapeaux || []).length ? l.drapeaux.join(', ') : 'aucun';\nconst priorite = (l.drapeaux || []).includes('risque de resiliation') || (l.drapeaux || []).includes('risque de résiliation') ? 'High' : (l.clarte >= 65 ? 'Medium' : 'Low');\n\nconst description = [\n  'CADRAGE — ' + p.client.nom + ' (' + p.client.domaine + ')',\n  'Reference : ' + p.reference,\n  'Repondant : ' + (r.contact_nom || '?') + ' — ' + (r.contact_email || '?') + (r.contact_tel ? ' — ' + r.contact_tel : ''),\n  'Duree de remplissage : ' + (p.duree_minutes || '?') + ' min',\n  '',\n  '--- LECTURE AUTOMATIQUE ---',\n  'Socle recommande : ' + (l.socle_recommande || '?'),\n  'Clarte : ' + (l.clarte || 0) + ' % | dynamisme ' + (l.dynamisme || 0) + ' | transaction ' + (l.transaction || 0) + ' | criticite ' + (l.criticite || 0),\n  'Drapeaux : ' + drapeaux,\n  '',\n  '--- REPONSES STRUCTURANTES ---',\n  'Role principal du site : ' + v('role_principal'),\n  'Frequence de mise a jour : ' + v('frequence_maj'),\n  'Qui edite : ' + v('qui_edite'),\n  'Impact d une panne de 4h : ' + v('criticite'),\n  'Budget mensuel envisage : ' + v('budget_mensuel'),\n  'Priorite unique 12 mois : ' + v('arbitrage'),\n  'Horizon : ' + v('horizon'),\n  'Visibilite IA souhaitee : ' + v('ia_volonte'),\n  'Fonds documentaire : ' + v('corpus'),\n  '',\n  '--- VERBATIM ---',\n  'Site de reference cite : ' + (r.reference || '—'),\n  'Objectif chiffre : ' + (r.volume_cible || '—'),\n  'Echeance declencheuse : ' + (r.declencheur || '—'),\n  'Champ libre : ' + (r.libre || '—'),\n  '',\n  '--- CHARGE COMPLETE ---',\n  JSON.stringify(p, null, 2)\n].join('\\n');\n\nreturn [{ json: {\n  reference: p.reference,\n  cle: p.client.cle,\n  domaine: p.client.domaine,\n  nom_client: p.client.nom,\n  email: r.contact_email,\n  contact_nom: r.contact_nom || p.client.nom,\n  socle: l.socle_recommande || 'non determine',\n  clarte: l.clarte || 0,\n  priorite,\n  drapeaux,\n  description\n} }];"
+      },
+      "id": "code-synthese",
+      "name": "Mise en forme du ticket",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [60, 200]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://desk.zoho.eu/api/v1/tickets",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "oAuth2Api",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            { "name": "orgId", "value": "REMPLACER_PAR_VOTRE_ORG_ID" }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({\n  subject: 'Cadrage — ' + $json.domaine + ' — ' + $json.socle,\n  description: $json.description,\n  departmentId: 'REMPLACER_PAR_VOTRE_DEPARTMENT_ID',\n  priority: $json.priorite,\n  channel: 'Web',\n  classification: 'Question',\n  contact: {\n    lastName: $json.contact_nom,\n    email: $json.email\n  }\n}) }}",
+        "options": {}
+      },
+      "id": "http-desk",
+      "name": "Zoho Desk — ouverture du ticket",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [280, 200]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ JSON.stringify({ ok: true, reference: $('Mise en forme du ticket').first().json.reference }) }}",
+        "options": {}
+      },
+      "id": "resp-ok",
+      "name": "Reponse 200",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [500, 200]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ JSON.stringify({ ok: true, doublon: true }) }}",
+        "options": {}
+      },
+      "id": "resp-doublon",
+      "name": "Reponse 200 (doublon ignore)",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [60, 420]
+    }
+  ],
+  "connections": {
+    "Reception du formulaire": {
+      "main": [[{ "node": "Controle et anti-doublon", "type": "main", "index": 0 }]]
+    },
+    "Controle et anti-doublon": {
+      "main": [[{ "node": "Nouvelle reponse ?", "type": "main", "index": 0 }]]
+    },
+    "Nouvelle reponse ?": {
+      "main": [
+        [{ "node": "Mise en forme du ticket", "type": "main", "index": 0 }],
+        [{ "node": "Reponse 200 (doublon ignore)", "type": "main", "index": 0 }]
+      ]
+    },
+    "Mise en forme du ticket": {
+      "main": [[{ "node": "Zoho Desk — ouverture du ticket", "type": "main", "index": 0 }]]
+    },
+    "Zoho Desk — ouverture du ticket": {
+      "main": [[{ "node": "Reponse 200", "type": "main", "index": 0 }]]
+    }
+  },
+  "settings": { "executionOrder": "v1" },
+  "pinData": {}
+}
