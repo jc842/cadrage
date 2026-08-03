@@ -76,7 +76,7 @@ window.LES4H_CLIENTS = {
   "123bonheur": {
     nom: "Peggy Prince — 123bonheur",
     domaine: "123bonheur.fr",
-    secteur: "Accompagnement de dirigeants · Guadeloupe",
+    secteur: "Accompagnement de dirigeants · France",
     modules: ["reservation"],
     accroche: "Votre site porte une marque personnelle et un discours. " +
               "L'enjeu est la conversion : combien de séances découvertes il doit générer, et par quel chemin."
