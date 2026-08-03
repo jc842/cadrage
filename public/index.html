@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cadrage digital · LES4H</title>
+<meta name="description" content="Questionnaire de cadrage confidentiel — LES4H, conseil digital senior au cœur des Caraïbes.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%230A1F27'/><text x='16' y='22' font-size='15' font-family='serif' fill='%230FA3A0' text-anchor='middle'>4H</text></svg>">
+<style>
+/* ─────────────────────────────────────────────────────────────
+   LES4H · Cadrage digital
+   Aucune ressource externe (polices système) — conformité CNIL.
+   ───────────────────────────────────────────────────────────── */
+:root{
+  --encre:#0A1F27;
+  --ardoise:#12333E;
+  --brume:#5B7C86;
+  --trait:#CBD6D3;
+  --papier:#EDF0EE;
+  --blanc:#FBFCFB;
+  --lagon:#0FA3A0;
+  --lagon-sombre:#0B7C7A;
+  --sable:#E3B54F;
+  --brique:#B3453A;
+
+  --display:ui-serif,"Iowan Old Style","Palatino Linotype",Palatino,Georgia,"Times New Roman",serif;
+  --sans:"Inter",system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  --mono:ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,"Liberation Mono",monospace;
+
+  --r:4px;
+  --pas:clamp(1rem,2.2vw,1.6rem);
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;background:var(--papier);color:var(--encre);
+  font-family:var(--sans);font-size:16px;line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+h1,h2,h3{font-family:var(--display);font-weight:600;line-height:1.15;margin:0;letter-spacing:-.01em}
+p{margin:0}
+button{font:inherit;color:inherit}
+a{color:var(--lagon-sombre)}
+
+/* ── Bandeau ─────────────────────────────────────────────── */
+.bandeau{
+  background:var(--encre);color:var(--blanc);
+  border-bottom:3px solid var(--lagon);
+}
+.bandeau-in{
+  max-width:1180px;margin:0 auto;padding:1.1rem var(--pas);
+  display:flex;align-items:center;gap:1.25rem;flex-wrap:wrap;
+}
+.bandeau img{height:26px;width:auto;display:block}
+.bandeau-titre{
+  font-family:var(--mono);font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;
+  color:#9FB8BE;border-left:1px solid #2A4A55;padding-left:1.25rem;
+}
+.bandeau-titre b{display:block;color:var(--blanc);font-weight:600;letter-spacing:.08em;font-size:.78rem}
+.sceau{
+  margin-left:auto;font-family:var(--mono);font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--sable);border:1px solid #3A5560;border-radius:100px;padding:.3rem .75rem;white-space:nowrap;
+}
+
+/* ── Ouverture ───────────────────────────────────────────── */
+.ouverture{background:var(--encre);color:var(--blanc);padding:clamp(2.5rem,6vw,4.5rem) 0 clamp(3rem,7vw,5rem)}
+.ouverture-in{max-width:1180px;margin:0 auto;padding:0 var(--pas)}
+.eyebrow{
+  font-family:var(--mono);font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;color:var(--lagon);
+  display:block;margin-bottom:1.1rem;
+}
+.ouverture h1{font-size:clamp(2rem,5.2vw,3.4rem);max-width:20ch;color:var(--blanc)}
+.ouverture h1 em{font-style:normal;color:var(--sable)}
+.chapeau{margin-top:1.4rem;max-width:62ch;color:#C3D3D7;font-size:clamp(1rem,1.5vw,1.09rem)}
+.reperes{
+  margin-top:2.5rem;display:grid;gap:1px;background:#24444F;
+  grid-template-columns:repeat(auto-fit,minmax(180px,1fr));border:1px solid #24444F;
+}
+.repere{background:var(--encre);padding:1rem 1.15rem}
+.repere dt{font-family:var(--mono);font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:var(--brume)}
+.repere dd{margin:.35rem 0 0;font-size:.95rem;color:var(--blanc)}
+
+/* ── Corps ───────────────────────────────────────────────── */
+.corps{max-width:1180px;margin:0 auto;padding:0 var(--pas) 5rem;position:relative;z-index:2}
+.grille{display:grid;gap:clamp(1.5rem,3vw,3rem);grid-template-columns:1fr;align-items:start}
+@media(min-width:960px){.grille{grid-template-columns:264px 1fr}}
+
+/* ── Rail (signature) ────────────────────────────────────── */
+.rail{
+  position:sticky;top:1.25rem;margin-top:-2.5rem;
+  background:var(--blanc);border:1px solid var(--trait);border-radius:var(--r);
+  padding:1.35rem 1.25rem;
+}
+@media(max-width:959px){.rail{position:static;margin-top:-2rem}}
+.rail-titre{
+  font-family:var(--mono);font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:var(--brume);
+  margin-bottom:1rem;
+}
+.epine{list-style:none;margin:0;padding:0;position:relative}
+.epine::before{
+  content:"";position:absolute;left:11px;top:10px;bottom:10px;width:1px;background:var(--trait);
+}
+.noeud{
+  position:relative;padding:.36rem 0 .36rem 2.1rem;font-size:.83rem;color:var(--brume);
+  cursor:pointer;line-height:1.35;
+}
+.noeud::before{
+  content:"";position:absolute;left:6px;top:.62rem;width:11px;height:11px;border-radius:50%;
+  background:var(--blanc);border:1px solid var(--trait);transition:background .25s,border-color .25s;
+}
+.noeud[data-etat="cours"]{color:var(--encre);font-weight:600}
+.noeud[data-etat="cours"]::before{border-color:var(--lagon);background:var(--lagon);box-shadow:0 0 0 3px rgba(15,163,160,.18)}
+.noeud[data-etat="fait"]{color:var(--ardoise)}
+.noeud[data-etat="fait"]::before{background:var(--lagon-sombre);border-color:var(--lagon-sombre)}
+.noeud b{font-family:var(--mono);font-size:.66rem;color:var(--brume);display:block;letter-spacing:.1em}
+
+.jauge{margin-top:1.4rem;padding-top:1.25rem;border-top:1px solid var(--trait)}
+.jauge-tete{display:flex;justify-content:space-between;align-items:baseline;gap:.5rem}
+.jauge-tete span{font-family:var(--mono);font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--brume)}
+.jauge-tete strong{font-family:var(--mono);font-size:.72rem;color:var(--encre)}
+.jauge-piste{height:5px;background:var(--papier);border-radius:100px;margin-top:.6rem;overflow:hidden}
+.jauge-barre{height:100%;width:0;background:linear-gradient(90deg,var(--sable),var(--lagon));transition:width .5s cubic-bezier(.2,.7,.3,1)}
+.jauge-note{margin-top:.7rem;font-size:.76rem;color:var(--brume);line-height:1.45}
+.rail-brouillon{margin-top:1.1rem;font-family:var(--mono);font-size:.62rem;color:var(--brume);letter-spacing:.04em}
+
+/* ── Sections ────────────────────────────────────────────── */
+.section{
+  background:var(--blanc);border:1px solid var(--trait);border-radius:var(--r);
+  padding:clamp(1.5rem,3vw,2.4rem);margin-bottom:1.1rem;scroll-margin-top:1.5rem;
+}
+.section-tete{border-bottom:1px solid var(--trait);padding-bottom:1.1rem;margin-bottom:1.6rem}
+.section-num{font-family:var(--mono);font-size:.66rem;letter-spacing:.18em;text-transform:uppercase;color:var(--lagon-sombre)}
+.section h2{font-size:clamp(1.3rem,2.6vw,1.75rem);margin-top:.5rem}
+.section-intro{margin-top:.7rem;color:#41626C;font-size:.94rem;max-width:70ch}
+
+.champ{margin-bottom:1.9rem}
+.champ:last-child{margin-bottom:0}
+.libelle{display:block;font-weight:600;font-size:1rem;margin-bottom:.3rem}
+.libelle .obl{color:var(--brique);font-weight:400}
+.aide{display:block;color:var(--brume);font-size:.85rem;margin-bottom:.75rem;max-width:70ch}
+.compteur{font-family:var(--mono);font-size:.66rem;color:var(--brume);letter-spacing:.08em}
+
+input[type=text],input[type=email],input[type=tel],textarea,select{
+  width:100%;padding:.7rem .8rem;font:inherit;font-size:.95rem;color:var(--encre);
+  background:var(--blanc);border:1px solid var(--trait);border-radius:var(--r);
+}
+textarea{min-height:104px;resize:vertical}
+input:focus-visible,textarea:focus-visible,select:focus-visible,button:focus-visible,.option:focus-within{
+  outline:2px solid var(--lagon);outline-offset:2px;
+}
+input::placeholder,textarea::placeholder{color:#9FB0B4}
+
+.options{display:grid;gap:.5rem}
+.options[data-colonnes="2"]{grid-template-columns:1fr}
+@media(min-width:620px){.options[data-colonnes="2"]{grid-template-columns:1fr 1fr}}
+.option{
+  display:flex;gap:.7rem;align-items:flex-start;padding:.72rem .85rem;
+  border:1px solid var(--trait);border-radius:var(--r);cursor:pointer;background:var(--blanc);
+  transition:border-color .15s,background .15s;
+}
+.option:hover{border-color:var(--brume)}
+.option input{margin:.28rem 0 0;accent-color:var(--lagon-sombre);flex:none;width:16px;height:16px}
+.option span{font-size:.92rem;line-height:1.4}
+.option span i{display:block;font-style:normal;color:var(--brume);font-size:.8rem;margin-top:.12rem}
+.option:has(input:checked){border-color:var(--lagon);background:#F1FAF9}
+.option.desactive{opacity:.45;cursor:not-allowed}
+
+/* échelle */
+.echelle{display:flex;gap:.4rem;flex-wrap:wrap}
+.echelle label{
+  flex:1 1 0;min-width:56px;text-align:center;border:1px solid var(--trait);border-radius:var(--r);
+  padding:.6rem .3rem;cursor:pointer;font-family:var(--mono);font-size:.82rem;background:var(--blanc);
+}
+.echelle label:has(input:checked){background:var(--encre);color:var(--blanc);border-color:var(--encre)}
+.echelle input{position:absolute;opacity:0;width:0;height:0}
+.echelle-bornes{display:flex;justify-content:space-between;margin-top:.45rem;font-size:.74rem;color:var(--brume)}
+
+.bloc-conditionnel{
+  border-left:2px solid var(--lagon);padding-left:1.1rem;margin:1.6rem 0;
+}
+.bloc-conditionnel .mention{
+  font-family:var(--mono);font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--lagon-sombre);
+  display:block;margin-bottom:1rem;
+}
+
+/* ── Pied / envoi ────────────────────────────────────────── */
+.envoi{
+  background:var(--encre);color:var(--blanc);border-radius:var(--r);
+  padding:clamp(1.6rem,3.5vw,2.6rem);margin-top:1.1rem;
+}
+.envoi h2{color:var(--blanc);font-size:clamp(1.3rem,2.6vw,1.75rem)}
+.envoi p{color:#B9CCD1;font-size:.93rem;margin-top:.8rem;max-width:66ch}
+.actions{display:flex;gap:.75rem;flex-wrap:wrap;margin-top:1.8rem;align-items:center}
+.bouton{
+  background:var(--lagon);color:#04262A;border:none;border-radius:var(--r);
+  padding:.85rem 1.5rem;font-weight:650;font-size:.95rem;cursor:pointer;letter-spacing:.01em;
+  transition:background .15s,transform .12s;
+}
+.bouton:hover{background:#17BAB6}
+.bouton:active{transform:translateY(1px)}
+.bouton[disabled]{opacity:.55;cursor:progress}
+.bouton-second{
+  background:transparent;color:#B9CCD1;border:1px solid #2E4E59;border-radius:var(--r);
+  padding:.85rem 1.3rem;font-size:.88rem;cursor:pointer;
+}
+.bouton-second:hover{color:var(--blanc);border-color:var(--brume)}
+.statut{font-size:.86rem;margin-top:1.1rem;min-height:1.2em}
+.statut[data-ton="ok"]{color:#7FE3D6}
+.statut[data-ton="ko"]{color:#F2A99C}
+.rgpd{
+  margin-top:1.8rem;padding-top:1.4rem;border-top:1px solid #24444F;
+  font-size:.78rem;color:#8FAAB1;line-height:1.55;max-width:78ch;
+}
+.rgpd a{color:#7FE3D6}
+
+.pied{
+  max-width:1180px;margin:0 auto;padding:2rem var(--pas) 3rem;
+  font-size:.76rem;color:var(--brume);display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;
+  border-top:1px solid var(--trait);
+}
+.pied span{font-family:var(--mono);letter-spacing:.06em}
+
+/* ── Confirmation ────────────────────────────────────────── */
+.merci{display:none;text-align:left}
+.merci.actif{display:block}
+.merci h2{color:var(--blanc)}
+.merci ul{color:#B9CCD1;font-size:.92rem;padding-left:1.1rem;margin-top:1rem}
+.merci li{margin-bottom:.4rem}
+
+.erreur{border-color:var(--brique)!important}
+.msg-erreur{color:var(--brique);font-size:.82rem;margin-top:.4rem;display:none}
+.msg-erreur.actif{display:block}
+
+@media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important;scroll-behavior:auto!important}}
+html{scroll-behavior:smooth}
+</style>
+</head>
+<body>
+
+<header class="bandeau">
+  <div class="bandeau-in">
+    <img src="https://les4h.fr/wp-content/uploads/2026/05/les4h-wide-white.png" alt="LES4H">
+    <div class="bandeau-titre">Cadrage digital<b id="tete-client">—</b></div>
+    <div class="sceau">Confidentiel</div>
+  </div>
+</header>
+
+<section class="ouverture">
+  <div class="ouverture-in">
+    <span class="eyebrow" id="ouv-secteur">Enquête de positionnement</span>
+    <h1>Avant de faire évoluer votre hébergement, <em>on écoute.</em></h1>
+    <p class="chapeau" id="ouv-chapeau">
+      Ce questionnaire sert à une seule chose : comprendre ce que vous attendez vraiment de votre site
+      dans les douze prochains mois, pour que la solution technique découle de vos objectifs — et pas l'inverse.
+      Comptez 8 à 12 minutes. Vos réponses sont enregistrées au fur et à mesure sur votre appareil.
+    </p>
+    <dl class="reperes">
+      <div class="repere"><dt>Site concerné</dt><dd id="rep-domaine">—</dd></div>
+      <div class="repere"><dt>Durée estimée</dt><dd>8 à 12 minutes</dd></div>
+      <div class="repere"><dt>Réponses obligatoires</dt><dd>Section 01 uniquement</dd></div>
+      <div class="repere"><dt>Interlocuteur</dt><dd>Jean-Christophe Hutin</dd></div>
+    </dl>
+  </div>
+</section>
+
+<main class="corps">
+  <div class="grille">
+
+    <aside class="rail" aria-label="Progression">
+      <div class="rail-titre">Progression</div>
+      <ol class="epine" id="epine"></ol>
+
+      <div class="jauge">
+        <div class="jauge-tete">
+          <span>Signal de positionnement</span>
+          <strong id="jauge-valeur">0 %</strong>
+        </div>
+        <div class="jauge-piste"><div class="jauge-barre" id="jauge-barre"></div></div>
+        <p class="jauge-note" id="jauge-note">
+          Plus vos réponses sont précises, plus la proposition sera taillée pour vous.
+          Sans signal net, nous appliquerons par défaut un socle d'hébergement simplifié.
+        </p>
+      </div>
+      <div class="rail-brouillon" id="rail-brouillon"></div>
+    </aside>
+
+    <div>
+      <form id="formulaire" novalidate>
+        <div id="sections"></div>
+
+        <div class="envoi">
+          <div id="bloc-envoi">
+            <h2>Transmettre vos réponses</h2>
+            <p>
+              Une fois envoyé, vous recevez une synthèse écrite et une proposition d'hébergement
+              adaptée sous 5 jours ouvrés. Rien n'est engagé à ce stade.
+            </p>
+            <div class="actions">
+              <button type="submit" class="bouton" id="btn-envoyer">Envoyer mes réponses</button>
+              <button type="button" class="bouton-second" id="btn-fichier">Télécharger une copie</button>
+              <button type="button" class="bouton-second" id="btn-vider">Tout effacer</button>
+            </div>
+            <p class="statut" id="statut" role="status" aria-live="polite"></p>
+            <div class="rgpd">
+              Les informations recueillies servent uniquement à établir votre proposition de service et ne sont
+              transmises à aucun tiers à des fins commerciales. Responsable de traitement : LES4H — Jean-Christophe Hutin.
+              Conservation : 24 mois. Vous disposez d'un droit d'accès, de rectification et de suppression à
+              <a href="mailto:support@les4h.fr">support@les4h.fr</a>.
+            </div>
+          </div>
+
+          <div class="merci" id="bloc-merci">
+            <h2>Reçu. Merci.</h2>
+            <p>Vos réponses sont enregistrées sous la référence <strong id="ref-envoi">—</strong>.</p>
+            <ul>
+              <li>Analyse de vos réponses croisée avec les données de trafic de votre site.</li>
+              <li>Synthèse écrite + recommandation d'hébergement sous 5 jours ouvrés.</li>
+              <li>Un échange de 30 minutes pour arbitrer, si vous le souhaitez.</li>
+            </ul>
+            <div class="actions">
+              <button type="button" class="bouton-second" id="btn-fichier-2">Télécharger une copie de mes réponses</button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</main>
+
+<footer class="pied">
+  <span>© 2026 LES4H — Jean-Christophe Hutin · Conseil digital · Caraïbes</span>
+  <span id="pied-ref">Document de cadrage confidentiel</span>
+</footer>
+
+<script src="clients.js"></script>
+<script src="questionnaire.js"></script>
+</body>
+</html>

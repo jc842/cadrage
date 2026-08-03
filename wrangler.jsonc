@@ -1,0 +1,41 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "cadrage",
+  "compatibility_date": "2026-08-01",
+
+  // Worker "assets-only" : aucun script serveur, pas de champ "main".
+  // _headers et _redirects sont pris en charge nativement s'ils sont
+  // placés dans ce répertoire.
+  "assets": {
+    "directory": "./public",
+    "not_found_handling": "404-page"
+  },
+
+  // Sous-domaine de test : cadrage.<votre-sous-domaine>.workers.dev
+  "workers_dev": true,
+  "preview_urls": true,
+
+  "observability": {
+    "enabled": true
+  },
+
+  // Les 14 sous-domaines clients. custom_domain: true crée
+  // automatiquement l'enregistrement DNS dans la zone les4h.fr.
+  // Le questionnaire déduit le client du nom d'hôte : pas de build par client.
+  "routes": [
+    { "pattern": "esperance.les4h.fr",  "custom_domain": true },
+    { "pattern": "bellesrives.les4h.fr", "custom_domain": true },
+    { "pattern": "greenlodge.les4h.fr",  "custom_domain": true },
+    { "pattern": "atmosphere.les4h.fr",  "custom_domain": true },
+    { "pattern": "cash.les4h.fr",        "custom_domain": true },
+    { "pattern": "pulsat.les4h.fr",      "custom_domain": true },
+    { "pattern": "123bonheur.les4h.fr",  "custom_domain": true },
+    { "pattern": "alubat971.les4h.fr",   "custom_domain": true },
+    { "pattern": "alubat972.les4h.fr",   "custom_domain": true },
+    { "pattern": "alubat973.les4h.fr",   "custom_domain": true },
+    { "pattern": "iris.les4h.fr",        "custom_domain": true },
+    { "pattern": "smt.les4h.fr",         "custom_domain": true },
+    { "pattern": "ossegua.les4h.fr",     "custom_domain": true },
+    { "pattern": "chloe.les4h.fr",       "custom_domain": true }
+  ]
+}

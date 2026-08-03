@@ -1,0 +1,14 @@
+{
+  "name": "cadrage-les4h",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Questionnaires de cadrage digital LES4H - 14 clients, un seul deploiement",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "tail": "wrangler tail"
+  },
+  "devDependencies": {
+    "wrangler": "^4"
+  }
+}
