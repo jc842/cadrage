@@ -36,6 +36,7 @@
     { "pattern": "iris.les4h.fr",        "custom_domain": true },
     { "pattern": "smt.les4h.fr",         "custom_domain": true },
     { "pattern": "ossegua.les4h.fr",     "custom_domain": true },
-    { "pattern": "chloe.les4h.fr",       "custom_domain": true }
+    { "pattern": "chloe.les4h.fr",       "custom_domain": true },
+    { "pattern": "halo.les4h.fr",       "custom_domain": true }
   ]
 }
