@@ -28,6 +28,15 @@ window.LES4H_CLIENTS = {
               "Ce questionnaire doit nous dire ce que le site doit porter demain : le planning, l'inscription, la fidélisation — ou rester une vitrine."
   },
 
+    halo: {
+    nom: "Halo Life",
+    domaine: "halo-life.fr",
+    secteur: "Yoga & Pilates · Jarry",
+    modules: ["reservation", "pointdevente"],
+    accroche: "Votre site présente vos activités, mais les réservations partent aujourd'hui vers un outil externe. " +
+              "Ce questionnaire doit nous dire ce que le site doit porter demain : le planning, l'inscription, la fidélisation — ou rester une vitrine."
+  },
+
   bellesrives: {
     nom: "Belles Rives — Oikos",
     domaine: "bellesrives-immobilier.com",
@@ -128,6 +137,8 @@ window.LES4H_CLIENTS = {
     accroche: "Site d'usine et de savoir-faire, adossé à un réseau. " +
               "Ce cadrage doit dire à qui il parle en priorité : prescripteurs, clients finaux, ou candidats."
   },
+
+
 
   /* ── Associations ──────────────────────────────────────── */
 
