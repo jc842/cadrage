@@ -30,7 +30,7 @@ window.LES4H_CLIENTS = {
 
     halo: {
     nom: "Halo Life",
-    domaine: "halo-life.fr",
+    domaine: "halo-life.com",
     secteur: "Yoga & Pilates · Jarry",
     modules: ["reservation", "pointdevente"],
     accroche: "Votre site présente vos activités, mais les réservations partent aujourd'hui vers un outil externe. " +
