@@ -89,7 +89,7 @@ window.LES4H_CLIENTS = {
     domaine: "alubat971.com",
     secteur: "Menuiserie aluminium · Guadeloupe · Groupe CPG",
     modules: ["b2b", "groupe"],
-    accroche: "Le contenu du site est à mettre à jour et s'adapter aux nouvelles tendances" +
+    accroche: "Le contenu du site est à mettre à jour et s'adapter aux nouvelles tendances. " +
               "Ce cadrage sert à décider où placer l'effort : le catalogue, la conversion, ou le trafic en magasin."
   },
 
@@ -98,7 +98,7 @@ window.LES4H_CLIENTS = {
     domaine: "alubat972.com",
     secteur: "Menuiserie aluminium · Martinique · Groupe CPG",
     modules: ["b2b", "groupe"],
-    accroche: "Le contenu du site est à mettre à jour et s'adapter aux nouvelles tendances" +
+    accroche: "Le contenu du site est à mettre à jour et s'adapter aux nouvelles tendances. " +
               "Ce cadrage sert à décider où placer l'effort : le catalogue, la conversion, ou le trafic en magasin."
   },
 
@@ -107,7 +107,7 @@ window.LES4H_CLIENTS = {
     domaine: "alubat973.com",
     secteur: "Menuiserie aluminium · Guyane · Groupe CPG",
     modules: ["b2b", "groupe"],
-    accroche: "Le contenu du site est à mettre à jour et s'adapter aux nouvelles tendances" +
+    accroche: "Le contenu du site est à mettre à jour et s'adapter aux nouvelles tendances. " +
               "Ce cadrage sert à décider où placer l'effort : le catalogue, la conversion, ou le trafic en magasin."
   },
 
