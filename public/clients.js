@@ -33,8 +33,9 @@ window.LES4H_CLIENTS = {
     domaine: "halo-life.com",
     secteur: "Yoga & Pilates · Jarry",
     modules: ["reservation", "pointdevente"],
-    accroche: "Votre site présente vos activités, mais les réservations partent aujourd'hui vers un outil externe. " +
-              "Ce questionnaire doit nous dire ce que le site doit porter demain : le planning, l'inscription, la fidélisation — ou rester une vitrine."
+    accroche: "Un studio se remplit sur la régularité, pas sur la fréquentation ponctuelle. " +
+              "L'enjeu de ce cadrage : savoir si le site doit porter le planning, les cartes et les abonnements, " +
+              "ou rester la vitrine qui donne envie de pousser la porte une première fois."
   },
 
   bellesrives: {
