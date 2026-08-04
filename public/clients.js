@@ -89,8 +89,8 @@ window.LES4H_CLIENTS = {
     domaine: "alubat971.com",
     secteur: "Menuiserie aluminium · Guadeloupe · Groupe CPG",
     modules: ["b2b", "groupe"],
-    accroche: "Votre site est le premier du groupe à être refondu sur une base plus rapide et plus économe. " +
-              "Vos réponses détermineront ce que ce nouveau socle doit savoir faire — pour vous, puis pour les autres sites du groupe."
+    accroche: "Le contenu du site est à mettre à jour et s'adapter aux nouvelles tendances" +
+              "Ce cadrage sert à décider où placer l'effort : le catalogue, la conversion, ou le trafic en magasin."
   },
 
   alubat972: {
@@ -98,8 +98,8 @@ window.LES4H_CLIENTS = {
     domaine: "alubat972.com",
     secteur: "Menuiserie aluminium · Martinique · Groupe CPG",
     modules: ["b2b", "groupe"],
-    accroche: "Le groupe engage une refonte progressive de ses sites. " +
-              "Ce questionnaire sert à savoir ce qui doit rester commun à toutes les entités, et ce qui doit rester propre à la Martinique."
+    accroche: "Le contenu du site est à mettre à jour et s'adapter aux nouvelles tendances" +
+              "Ce cadrage sert à décider où placer l'effort : le catalogue, la conversion, ou le trafic en magasin."
   },
 
   alubat973: {
@@ -107,8 +107,8 @@ window.LES4H_CLIENTS = {
     domaine: "alubat973.com",
     secteur: "Menuiserie aluminium · Guyane · Groupe CPG",
     modules: ["b2b", "groupe"],
-    accroche: "Le groupe engage une refonte progressive de ses sites. " +
-              "Ce questionnaire sert à savoir ce qui doit rester commun à toutes les entités, et ce qui doit rester propre à la Guyane."
+    accroche: "Le contenu du site est à mettre à jour et s'adapter aux nouvelles tendances" +
+              "Ce cadrage sert à décider où placer l'effort : le catalogue, la conversion, ou le trafic en magasin."
   },
 
   iris: {
